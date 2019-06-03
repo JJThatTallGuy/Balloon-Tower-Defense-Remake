@@ -12,11 +12,11 @@ public class Main
 	    world = new World();
 	    
 	    world.setGraphicSystem(frame.getGraphicSystem());
-	    world.setInputSystem(frame.getGraphicSystem());
+	    world.setInputSystem(frame.getInputSystem());
 	    
-	    GameObject.setPhysicsSystem(world.getPhysicsSystem());
 	    GameObject.setWorld(world);
 	    TextObject.setWorld(world);
+	    frame.getGraphicSystem().setWorld(world);
 	    
 	    world.init();
 	    world.run();

@@ -1,21 +1,30 @@
 import java.util.ArrayList;
 
+import javafx.scene.shape.Line;
+
+import java.awt.Color;
+
 public class World {
 	private int lvl = 1;
 	private int health = 100;
 	private int money = 0;
-	private ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+	 GameObjectList        gameObjects = new GameObjectList();
 	private ArrayList<TextObject> textObjects = new ArrayList<TextObject>();
 	private static final int FRAME_MINIMUM_MILLIS = 10;
 	private  GraphicSystem graphicSystem;
 	 private  PhysicsSystem physicsSystem;
 	 private  InputSystem   inputSystem;  
 	 private  UserInput     userInput;
-	
+	  double worldPartX = 0;
+	  double worldPartY = 0;
+
 	
 	
 	
 	protected void init(){
+		Balloon b = new Balloon(20,20,0,5, 5, Color.BLACK);
+		gameObjects.add(b);
+		
 		
 	}
 	private void LoadLevel(){
@@ -23,6 +32,16 @@ public class World {
 	}
 	
 	private void processUserInput(UserInput userInput, double diffseconds){
+	
+		 
+		  if(userInput.keyPressed==(char)27)
+		  { System.exit(0);
+		  }
+		  else if(userInput.isMousePressed && Const.drawTower){
+			  Balloon b2 = new Balloon(userInput.mousePressedX,userInput.mousePressedY,0,5, 5, Color.BLACK);
+			  
+			  gameObjects.add(b2);
+		  }
 		
 	}
 	final void run(){
@@ -81,7 +100,8 @@ public class World {
 			  for(int i=0; i<textObjects.size(); i++)
 			  { graphicSystem.draw(textObjects.get(i));
 			  }
-			  
+			  graphicSystem.drawLine(200, 200, 300, 225, 5);
+				
 			  // redraw everything
 			  graphicSystem.redraw();
 			  	  
@@ -93,17 +113,10 @@ public class World {
 		// TODO Auto-generated method stub
 		
 	}
-	public Object getPhysicsSystem() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public void setGraphicSystem(Object graphicSystem) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void setInputSystem(Object graphicSystem) {
-		// TODO Auto-generated method stub
-		
-	}
+	  protected PhysicsSystem getPhysicsSystem()       { return physicsSystem; }
+
+	  protected void setGraphicSystem(GraphicSystem p) { graphicSystem = p; }
+	  protected void setInputSystem(InputSystem p)     { inputSystem   = p; }
+
 	
 }

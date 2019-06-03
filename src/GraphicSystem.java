@@ -1,24 +1,21 @@
 
-public class GraphicSystem {
 
-	public void clear() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void draw(GameObject gameObject) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void draw(TextObject textObject) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void redraw() {
-		// TODO Auto-generated method stub
-		
-	}
-
+interface GraphicSystem 
+{
+   void drawLine(int x1, int x2, int y1, int y2, int thickness);
+  // prepare to draw a new Screen
+  void clear();
+  
+  // draw ONE GameObject on the Screen
+  void draw(GameObject dot);
+ 
+  // draw ONE TextObject on the Screen
+  void draw(TextObject obj);
+  
+  // display the completed Screen
+  void redraw();
+  
+  
+  // set world
+  void setWorld(World world);  
 }
