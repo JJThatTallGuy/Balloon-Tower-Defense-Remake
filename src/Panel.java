@@ -50,11 +50,11 @@ class Panel extends JPanel implements GraphicSystem
                0, 0,Const.WORLD_WIDTH,Const.WORLD_HEIGHT);
   }
   
-  public final void drawLine(int x1, int y1, int x2, int y2, int thickness){
+  public final void drawLine(int x1, int y1, int x2, int y2){
 	  graphics.setColor(Color.ORANGE);
 	  graphics.fillRect(x1, y1, x2-x1, y2-y1);
-	  graphics.drawLine(x1, y1, x2, y2);
-
+	  //graphics.drawLine(x1, y1, x2, y2);
+	  
   }
   public final void draw(GameObject dot)
   {	  

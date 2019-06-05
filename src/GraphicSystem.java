@@ -2,7 +2,7 @@
 
 interface GraphicSystem 
 {
-   void drawLine(int x1, int x2, int y1, int y2, int thickness);
+   void drawLine(int x1, int x2, int y1, int y2);
   // prepare to draw a new Screen
   void clear();
   

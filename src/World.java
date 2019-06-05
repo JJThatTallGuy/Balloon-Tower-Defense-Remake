@@ -5,7 +5,7 @@ import javafx.scene.shape.Line;
 import java.awt.Color;
 
 public class World {
-	private int lvl = 1;
+	private int lvl = 0;
 	private int health = 100;
 	private int money = 0;
 	 GameObjectList        gameObjects = new GameObjectList();
@@ -17,12 +17,14 @@ public class World {
 	 private  UserInput     userInput;
 	  double worldPartX = 0;
 	  double worldPartY = 0;
+	  private double timePassed = 0;
+
 
 	
 	
 	
 	protected void init(){
-		Balloon b = new Balloon(20,20,0,5, 5, Color.BLACK);
+		Balloon b = new Balloon(490, 0,10,100, 5, Color.BLACK);
 		gameObjects.add(b);
 		
 		
@@ -91,6 +93,13 @@ public class World {
 		      
 			  // draw all Objects
 			  graphicSystem.clear();
+			  graphicSystem.drawLine(480, 0, 500, 150);
+			  graphicSystem.drawLine(330, 140, 500, 160);
+			  graphicSystem.drawLine(330, 140, 350, 290);
+			  graphicSystem.drawLine(330, 290, 630, 310);
+			  graphicSystem.drawLine(630, 290, 650, 510);
+			  graphicSystem.drawLine(500, 490 , 650, 510);
+			  graphicSystem.drawLine(500, 490, 520, 720);
 			  for(int i=0; i<gameSize; i++)
 			  { graphicSystem.draw(gameObjects.get(i));
 			  }
@@ -100,8 +109,7 @@ public class World {
 			  for(int i=0; i<textObjects.size(); i++)
 			  { graphicSystem.draw(textObjects.get(i));
 			  }
-			  graphicSystem.drawLine(200, 200, 300, 225, 5);
-				
+			
 			  // redraw everything
 			  graphicSystem.redraw();
 			  	  
@@ -109,8 +117,24 @@ public class World {
 			  createNewObjects(millisDiff/1000.0);
 		}
 	}
-	private void createNewObjects(double d) {
-		// TODO Auto-generated method stub
+	private void createNewObjects(double diffSeconds) {
+		 final double INTERVAL = Const.SPAWN_INTERVAL;
+		  
+			timePassed += diffSeconds;
+			if(timePassed>INTERVAL)
+			{
+			  timePassed -= INTERVAL;
+			      
+			  
+			
+			      
+			  
+			  Balloon b = new Balloon(490, 0,10,100, 5, Color.BLACK);
+			 
+			      
+			  // else add zombie to world
+			  this.gameObjects.add(b);
+			}
 		
 	}
 	  protected PhysicsSystem getPhysicsSystem()       { return physicsSystem; }
