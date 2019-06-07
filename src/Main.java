@@ -17,6 +17,7 @@ public class Main
 	    GameObject.setWorld(world);
 	    TextObject.setWorld(world);
 	    frame.getGraphicSystem().setWorld(world);
+	    frame.setWorld(world);
 	    
 	    world.init();
 	    world.run();

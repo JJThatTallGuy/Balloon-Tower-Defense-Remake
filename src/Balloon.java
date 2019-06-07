@@ -30,8 +30,7 @@ public void move(double diffSeconds){
 		this.setDestination(Const.array[counter].x, Const.array[counter].y);
 		super.move(diffSeconds);
 
-		System.out.println(this.isLiving);
-	}
+		}
 	else {
 		this.isLiving = false;
 		

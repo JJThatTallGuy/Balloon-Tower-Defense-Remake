@@ -5,27 +5,26 @@ import javafx.scene.shape.Line;
 import java.awt.Color;
 
 public class World {
-	private int lvl = 0;
+	public int lvl = 0;
 	private int health = 100;
 	private int money = 0;
-	 GameObjectList        gameObjects = new GameObjectList();
+	GameObjectList gameObjects = new GameObjectList();
 	private ArrayList<TextObject> textObjects = new ArrayList<TextObject>();
+	public ArrayList<Balloon> balloons = new ArrayList<Balloon>();
+	private ArrayList<Tower> towers = new ArrayList<Tower>();
 	private static final int FRAME_MINIMUM_MILLIS = 10;
 	private  GraphicSystem graphicSystem;
-	 private  PhysicsSystem physicsSystem;
-	 private  InputSystem   inputSystem;  
-	 private  UserInput     userInput;
-	  double worldPartX = 0;
-	  double worldPartY = 0;
-	  private double timePassed = 0;
-
-
-	
-	
+	private  PhysicsSystem physicsSystem;
+	private  InputSystem   inputSystem;  
+	private  UserInput     userInput;
+	double worldPartX = 0;
+	double worldPartY = 0;
+	private double timePassed = 0;
+	public long millisDiff;
 	
 	protected void init(){
-		Balloon b = new Balloon(490, 0,10,100, 5, Color.BLACK);
-		gameObjects.add(b);
+		//Balloon b = new Balloon(490, 0,10,100, 5, Color.BLACK);
+		//gameObjects.add(b);
 		
 		
 	}
@@ -40,10 +39,11 @@ public class World {
 		  { System.exit(0);
 		  }
 		  else if(userInput.isMousePressed && Const.drawTower){
-			  Balloon b2 = new Balloon(userInput.mousePressedX,userInput.mousePressedY,0,5, 5, Color.BLACK);
-			  
+			  Balloon b2 = new Balloon(userInput.mousePressedX,userInput.mousePressedY,0, 10, 5, Color.BLACK);
 			  gameObjects.add(b2);
+			  Const.drawTower = false;
 		  }
+		
 		
 	}
 	final void run(){
@@ -51,7 +51,7 @@ public class World {
 		while(true){
 		
 			long currentTick = System.currentTimeMillis();
-			  long millisDiff  = currentTick-lastTick;
+			  this.millisDiff  = currentTick-lastTick;
 			  
 			  if(millisDiff<FRAME_MINIMUM_MILLIS)
 			  {
@@ -89,7 +89,21 @@ public class World {
 		        { num++;
 		        }
 		      }	  
-			  
+		      int num2=0;
+		      int balloonSize = balloons.size();
+		      //System.out.println(balloonSize);
+		      while(num2<balloonSize)
+		      {
+		        if(balloons.get(num2).isLiving==false)
+		        { balloons.remove(num2);
+		          balloonSize--;
+		        }
+		        else
+		        { num2++;
+		        }
+		      }	 
+		      //System.out.println(balloonSize);
+
 		      
 			  // draw all Objects
 			  graphicSystem.clear();
@@ -112,29 +126,37 @@ public class World {
 			
 			  // redraw everything
 			  graphicSystem.redraw();
-			  	  
+			  //if(Const.levels.get(lvl).length == balloons.size()){
+				  //Const.canStart = false;
+			  //}
+			  
 			  // create new objects if needed
-			  createNewObjects(millisDiff/1000.0);
+			  if(Const.canStart && balloons.isEmpty()){
+				  
+				  //createNewObjects(millisDiff/1000.0);
+				  //lvl++;
+				  Const.canStart = false;
+			  }
 		}
 	}
-	private void createNewObjects(double diffSeconds) {
+	public void createNewObjects(double diffSeconds) {
 		 final double INTERVAL = Const.SPAWN_INTERVAL;
-		  
-			timePassed += diffSeconds;
-			if(timePassed>INTERVAL)
-			{
-			  timePassed -= INTERVAL;
-			      
-			  
-			
-			      
-			  
-			  Balloon b = new Balloon(490, 0,10,100, 5, Color.BLACK);
-			 
-			      
-			  // else add zombie to world
-			  this.gameObjects.add(b);
-			}
+		 Balloon[] b = Const.levels.get(lvl);
+		 gameObjects.add(b[0]);
+		 balloons.add(b[0]);
+		 int i = 1;
+		 System.out.println("Hello");
+		 while(i < b.length){
+			 System.out.println(timePassed);
+
+			 timePassed += millisDiff/1000.0;
+			 if(timePassed >= INTERVAL){
+				 gameObjects.add(b[i]);
+				 balloons.add(b[i]);
+				 timePassed=0;
+				 i++;
+			 }
+		 }
 		
 	}
 	  protected PhysicsSystem getPhysicsSystem()       { return physicsSystem; }

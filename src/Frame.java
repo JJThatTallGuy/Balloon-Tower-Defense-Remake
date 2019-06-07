@@ -8,7 +8,8 @@ public class Frame extends JFrame{
 
 	  // ...ok...
 	  private static final long serialVersionUID = 2L;
-	  private Panel panel = null;	
+	  private Panel panel = null;
+	  private World world = null;
 
 	  public Frame()
 	  { this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -28,11 +29,15 @@ public class Frame extends JFrame{
 		this.setContentPane(panel);
 		//Do not remove
 		this.setLayout(null);
-		Button b = new Button("Button");
+		Button b = new Button("Tower");
 		b.setBounds(1000, 50,50,30);
+		Button start = new Button("Start");
+		start.setBounds(1000, 20, 50, 30);
 		//Also do not remove
 		b.setFocusable(false);
+		start.setFocusable(false);
 		this.add(b);
+		this.add(start);
 		b.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -41,10 +46,21 @@ public class Frame extends JFrame{
 			}
 			
 		});
+		start.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				//Const.canStart = true;
+				if(world.balloons.isEmpty()){
+				world.createNewObjects(world.millisDiff/1000.0);
+				world.lvl++;
+				}
+			}
+		});
 	  }
 	  
 	  public void displayOnScreen() { validate(); setVisible(true); }
 	  
 	  public GraphicSystem getGraphicSystem() { return panel; }
 	  public InputSystem   getInputSystem()   { return panel.getInputSystem(); }
+	  public final void setWorld(World world_) {this.world = world_;}
 }
