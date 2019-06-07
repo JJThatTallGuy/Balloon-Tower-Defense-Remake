@@ -1,4 +1,8 @@
+import java.awt.Color;
 import java.awt.Point;
+import java.util.HashMap;
+import java.util.Map;
+
 
 public class Const {
 	 // size of the world
@@ -18,4 +22,9 @@ public class Const {
 	  static final int TYPE_SHOT    = 5;
 	  static final int TYPE_GRENADE = 6;
 	  
+	  static final Map<Integer,Balloon[]> levels = new HashMap<Integer,Balloon[]>(){{
+		  put(0,new Balloon[]{new Balloon(490,0,10,100,5,Color.BLACK)});
+		  put(1,new Balloon[]{new Balloon(490,0,10,100,5,Color.BLACK),new Balloon(490,0,10,100,5,Color.BLACK)});
+	  };
+	  };  
 }
