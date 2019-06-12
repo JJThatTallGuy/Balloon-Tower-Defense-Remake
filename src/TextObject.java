@@ -4,7 +4,7 @@
 import java.awt.Color;
 
 
-abstract class TextObject
+public class TextObject
 {
   protected static World world;
   
@@ -16,7 +16,10 @@ abstract class TextObject
   { x=x_; y=y_; color=color_;
   }
   
-  public abstract String toString();
+  public String toString(){
+	  String display = "Health: " + Const.health + "\n Money: " + Const.money;
+	    return display;
+  };
   
   protected static void setWorld(World w){world=w;}
 }

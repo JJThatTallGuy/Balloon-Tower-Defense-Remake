@@ -45,7 +45,10 @@ abstract class GameObject
   // move one step to direction <alfa>
   public void move(double diffSeconds)
   {  
-    if(!isMoving) return;	  
+    if(!isMoving){
+    this.isLiving = false;
+     return;
+    }
 	  
     // move if object has a destination
 	if(hasDestination)

@@ -5,7 +5,7 @@ public Balloon(double x_, double y_, double a_, double s_, int radius_, Color co
 		super(x_, y_, a_, s_, radius_, color);
 		// TODO Auto-generated constructor stub
 	}
-int health;
+int health = 100;
 int speed;
 Color color;
 int layers;
@@ -22,6 +22,9 @@ public void move(double diffSeconds){
 		if(dist <= 5){
 			if(counter==7){
 				this.isLiving = false;
+				Const.health--;
+				System.out.println(Const.health);
+
 			}
 			else{
 				counter++;
@@ -33,6 +36,8 @@ public void move(double diffSeconds){
 		}
 	else {
 		this.isLiving = false;
+		Const.health--;
+		System.out.println(Const.health);
 		
 	}
 }
@@ -41,5 +46,15 @@ protected double distance(double x1, double y1, double x2, double y2)
   double xd = x1-x2;
   double yd = y1-y2;
   return Math.sqrt(xd*xd+yd*yd);
+}
+public void hasBeenShot() {
+	this.health -= 100;
+	if(health<=0)
+	{
+	  this.isLiving=false;
+	  Const.money +=1;
+	  return;
+	}
+	
 }
 }

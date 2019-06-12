@@ -6,12 +6,10 @@ import java.awt.Color;
 
 public class World {
 	public int lvl = 0;
-	private int health = 100;
-	private int money = 0;
 	GameObjectList gameObjects = new GameObjectList();
 	private ArrayList<TextObject> textObjects = new ArrayList<TextObject>();
 	public ArrayList<Balloon> balloons = new ArrayList<Balloon>();
-	private ArrayList<Tower> towers = new ArrayList<Tower>();
+	public  ArrayList<Tower> towers = new ArrayList<Tower>();
 	private static final int FRAME_MINIMUM_MILLIS = 10;
 	private  GraphicSystem graphicSystem;
 	private  PhysicsSystem physicsSystem;
@@ -20,13 +18,15 @@ public class World {
 	double worldPartX = 0;
 	double worldPartY = 0;
 	private double timePassed = 0;
+	private double timePassed2 = 0;
 	public long millisDiff;
 	
 	protected void init(){
 		//Balloon b = new Balloon(490, 0,10,100, 5, Color.BLACK);
 		//gameObjects.add(b);
-		
-		
+	    TextObject to = new TextObject(20,40, Color.BLACK);
+	    textObjects.add(to);
+
 	}
 	private void LoadLevel(){
 		
@@ -38,10 +38,12 @@ public class World {
 		  if(userInput.keyPressed==(char)27)
 		  { System.exit(0);
 		  }
-		  else if(userInput.isMousePressed && Const.drawTower){
-			  Balloon b2 = new Balloon(userInput.mousePressedX,userInput.mousePressedY,0, 10, 5, Color.BLACK);
-			  gameObjects.add(b2);
+		  else if(userInput.isMousePressed && Const.drawTower && Const.money >= 5){
+			  Tower t = new Tower(userInput.mousePressedX,userInput.mousePressedY, 20, Color.BLACK);
+			  gameObjects.add(t);
+			  towers.add(t);
 			  Const.drawTower = false;
+			  Const.money -= t.price;
 		  }
 		
 		
@@ -137,7 +139,36 @@ public class World {
 				  //lvl++;
 				  Const.canStart = false;
 			  }
+			  for(int i =0; i< towers.size(); i++){
+				  Tower t = towers.get(i);
+				  double TowerX = towers.get(i).x;
+				  double TowerY = towers.get(i).y;
+				  double TowerRadius = towers.get(i).Shootradius;
+				  for(int j=0; j<balloons.size(); j++){
+					  if(distance(TowerX, TowerY, balloons.get(j).x, balloons.get(j).y) < TowerRadius){
+						  	if(t.hasShot == false){
+						  		createShots(t, TowerX, TowerY, TowerRadius, balloons.get(j).x, balloons.get(j).y, millisDiff/1000.0);
+						  		t.hasShot = true;
+						  	}
+						  	
+					  }
+				  }
+			  }
 		}
+	}
+	private void createShots(Tower t, double towerX, double towerY, double towerRadius, double x, double y, double d) {
+		int i =0;
+		while(i<10){
+			timePassed2 += millisDiff/1000.0;
+			if(timePassed2>= Const.SHOT_INTERVAL){
+				Shot s = t.shoot(x, y);
+				gameObjects.add(s);
+				timePassed2=0;
+				i++;
+				System.out.println(i);
+			}
+		}
+		
 	}
 	public void createNewObjects(double diffSeconds) {
 		 final double INTERVAL = Const.SPAWN_INTERVAL;
@@ -145,10 +176,7 @@ public class World {
 		 gameObjects.add(b[0]);
 		 balloons.add(b[0]);
 		 int i = 1;
-		 System.out.println("Hello");
 		 while(i < b.length){
-			 System.out.println(timePassed);
-
 			 timePassed += millisDiff/1000.0;
 			 if(timePassed >= INTERVAL){
 				 gameObjects.add(b[i]);
@@ -163,6 +191,11 @@ public class World {
 
 	  protected void setGraphicSystem(GraphicSystem p) { graphicSystem = p; }
 	  protected void setInputSystem(InputSystem p)     { inputSystem   = p; }
-
+	  protected double distance(double x1, double y1, double x2, double y2)
+	  {
+	    double xd = x1-x2;
+	    double yd = y1-y2;
+	    return Math.sqrt(xd*xd+yd*yd);
+	  }
 	
 }

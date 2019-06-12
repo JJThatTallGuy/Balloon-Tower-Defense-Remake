@@ -1,4 +1,5 @@
 import java.awt.Button;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -33,6 +34,7 @@ public class Frame extends JFrame{
 		b.setBounds(1000, 50,50,30);
 		Button start = new Button("Start");
 		start.setBounds(1000, 20, 50, 30);
+		
 		//Also do not remove
 		b.setFocusable(false);
 		start.setFocusable(false);
@@ -53,6 +55,9 @@ public class Frame extends JFrame{
 				if(world.balloons.isEmpty()){
 				world.createNewObjects(world.millisDiff/1000.0);
 				world.lvl++;
+				for(int i =0 ; i < world.towers.size(); i++){
+					world.towers.get(i).hasShot = false;
+				}
 				}
 			}
 		});
