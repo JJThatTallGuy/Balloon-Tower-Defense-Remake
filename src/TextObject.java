@@ -17,8 +17,8 @@ public class TextObject
   }
   
   public String toString(){
-	  String display = "Health: " + Const.health + "\n Money: " + Const.money;
-	    return display;
+	  String display = "Health:" + Const.health + " Money:" + Const.money + " Level:" + world.lvl + "/" + Const.levels.size();
+	  return display;
   };
   
   protected static void setWorld(World w){world=w;}

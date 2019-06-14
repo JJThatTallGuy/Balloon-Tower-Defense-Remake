@@ -23,7 +23,6 @@ public void move(double diffSeconds){
 			if(counter==7){
 				this.isLiving = false;
 				Const.health--;
-				System.out.println(Const.health);
 
 			}
 			else{
@@ -37,7 +36,6 @@ public void move(double diffSeconds){
 	else {
 		this.isLiving = false;
 		Const.health--;
-		System.out.println(Const.health);
 		
 	}
 }

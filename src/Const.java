@@ -16,8 +16,8 @@ public class Const {
 	  static Point[] array = {new Point(490,0), new Point(490, 150), new Point(340, 150), new Point(340, 300)
 			  , new Point(640, 300), new Point(640, 500), new Point(505, 500), new Point(505, 720)};
 	  	  
-	  static final double SPAWN_INTERVAL = 20;
-	  static final double SHOT_INTERVAL = 20;
+	  static final double SPAWN_INTERVAL = 110;
+	  static final double SHOT_INTERVAL = 150;
 	  
 	  static final int TYPE_BALLOON  = 1;
 	  static final int TYPE_TOWER    = 2;
@@ -26,7 +26,7 @@ public class Const {
 	  static final int TYPE_GRENADE = 6;
 	  
 	  static final Map<Integer,Balloon[]> levels = new HashMap<Integer,Balloon[]>(){{
-		  put(0,new Balloon[]{new Balloon(490,0,10,100,5,Color.BLACK)});
+		  put(0,new Balloon[]{new Balloon(490,0,10,100,5,Color.BLACK), new Balloon(490,0,10,100,5,Color.BLACK)});
 		  put(1,new Balloon[]{new Balloon(490,0,10,100,5,Color.BLACK),new Balloon(490,0,10,100,5,Color.BLACK)});
 	  };
 	  };  

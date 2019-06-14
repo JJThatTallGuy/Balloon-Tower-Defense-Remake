@@ -15,7 +15,6 @@ interface GraphicSystem
   // display the completed Screen
   void redraw();
   
-  
   // set world
   void setWorld(World world);  
 }

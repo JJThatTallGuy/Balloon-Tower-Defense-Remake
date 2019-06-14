@@ -4,6 +4,7 @@
 
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.*;
 import javax.swing.*;
 
@@ -54,8 +55,9 @@ class Panel extends JPanel implements GraphicSystem
 	  graphics.setColor(Color.ORANGE);
 	  graphics.fillRect(x1, y1, x2-x1, y2-y1);
 	  //graphics.drawLine(x1, y1, x2, y2);
-	  
+
   }
+
   public final void draw(GameObject dot)
   {	  
 	int x = (int)(dot.x-dot.radius-world.worldPartX);

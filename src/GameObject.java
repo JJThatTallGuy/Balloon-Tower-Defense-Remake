@@ -46,8 +46,8 @@ abstract class GameObject
   public void move(double diffSeconds)
   {  
     if(!isMoving){
-    this.isLiving = false;
-     return;
+    	this.isLiving = false;
+    	return;
     }
 	  
     // move if object has a destination
