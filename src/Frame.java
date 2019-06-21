@@ -34,12 +34,19 @@ public class Frame extends JFrame{
 		b.setBounds(1000, 50,50,30);
 		Button start = new Button("Start");
 		start.setBounds(1000, 20, 50, 30);
-		
+		Button spike = new Button("Spike");
+		spike.setBounds(1000, 80, 50, 30);
+		Button g = new Button("GlueTower");
+		g.setBounds(980, 110, 70, 30);
 		//Also do not remove
 		b.setFocusable(false);
 		start.setFocusable(false);
+		spike.setFocusable(false);
+		g.setFocusable(false);
 		this.add(b);
 		this.add(start);
+		this.add(spike);
+		this.add(g);
 		b.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -56,11 +63,28 @@ public class Frame extends JFrame{
 				world.createNewObjects(world.millisDiff/1000.0);
 				world.lvl++;
 				for(int i =0 ; i < world.towers.size(); i++){
-					world.towers.get(i).hasShot = false;
+					world.towers.get(i).isShooting = false;
 				}
 				}
 			}
 		});
+		spike.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					Const.drawSpike = !Const.drawSpike;	
+				
+			}
+			
+		});
+		g.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+					Const.drawGlue = !Const.drawGlue;	
+				
+			}
+			
+		});
+
 	  }
 	  
 	  public void displayOnScreen() { validate(); setVisible(true); }

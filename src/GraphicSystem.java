@@ -17,4 +17,6 @@ interface GraphicSystem
   
   // set world
   void setWorld(World world);  
+  
+  void drawTower(GameObject dot);
 }

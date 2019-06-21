@@ -10,10 +10,9 @@ public Tower(double x_, double y_, int radius_, Color color_) {
 	}
 int price = 5;
 int shootingSpeed;
-int sellPrice;
 int lvl;
 double Shootradius = 100;
-boolean hasShot = false;
+boolean isShooting = false;
 @Override
 int type() {
 	// TODO Auto-generated method stub

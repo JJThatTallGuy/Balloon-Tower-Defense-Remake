@@ -6,6 +6,12 @@ import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.*;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 
@@ -68,8 +74,23 @@ class Panel extends JPanel implements GraphicSystem
 	graphics.fillOval(x, y, d, d);
 	graphics.setColor(Color.DARK_GRAY);
 	graphics.drawOval(x,y,d,d);
+	
   }
-  
+  public final void drawTower(GameObject dot){
+	  int x = (int)(dot.x-dot.radius-world.worldPartX);
+	  int y = (int)(dot.y-dot.radius-world.worldPartY);
+	  int d = (int)(dot.radius*2);
+      File classPathInput = new File(Panel.class.getResource("").getFile());
+      BufferedImage classpathImage = null;
+	try {
+		classpathImage = ImageIO.read(classPathInput);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+		
+		graphics.drawImage(classpathImage, x, y, d, d, null);
+  }
   public final void draw(TextObject text)
   {	  
     graphics.setFont(font);

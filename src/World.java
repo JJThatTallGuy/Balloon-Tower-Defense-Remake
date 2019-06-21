@@ -14,6 +14,9 @@ public class World {
 	private ArrayList<TextObject> textObjects = new ArrayList<TextObject>();
 	public ArrayList<Balloon> balloons = new ArrayList<Balloon>();
 	public  ArrayList<Tower> towers = new ArrayList<Tower>();
+	public ArrayList<GlueTower> gluetowers = new ArrayList<GlueTower>();
+	public  ArrayList<Spike> spikes = new ArrayList<Spike>();
+
 	private static final int FRAME_MINIMUM_MILLIS = 10;
 	private  GraphicSystem graphicSystem;
 	private  PhysicsSystem physicsSystem;
@@ -30,11 +33,26 @@ public class World {
 	    textObjects.add(to);
 
 	}
-	private void LoadLevel(){
-		
-	}
+
 	//method checks if the tower will intersect any of the rectangles that make up the road
 	private boolean intersection(Tower t){
+		Rectangle2D[] rArray = {new Rectangle2D.Double(480, 0, 20, 150),
+		  new Rectangle2D.Double(330, 140, 130, 20),
+		  new Rectangle2D.Double(330, 140, 20, 150),
+		  new Rectangle2D.Double(330, 290, 300, 20),
+		  new Rectangle2D.Double(630, 290, 20, 220),
+		  new Rectangle2D.Double(500, 490 , 150, 20),
+		  new Rectangle2D.Double(500, 490, 20, 130)};
+		//Ellipse2D e = new Ellipse2D.Double(t.x, t.y, t.radius, t.radius);
+		Point p = new Point((int)t.x, (int)t.y);
+		for(int i =0; i< rArray.length; i++){
+			if(rArray[i].contains(p) == true){
+				return true;
+			}
+		}
+		return false;
+	}
+	private boolean intersection(GlueTower t){
 		Rectangle2D[] rArray = {new Rectangle2D.Double(480, 0, 20, 150),
 		  new Rectangle2D.Double(330, 140, 130, 20),
 		  new Rectangle2D.Double(330, 140, 20, 150),
@@ -68,13 +86,33 @@ public class World {
 				  Const.money -= t.price;
 			  }
 		  }
-		
+		  else if(userInput.isMousePressed && Const.drawSpike && Const.money >=3){
+			  Spike s = new Spike(userInput.mousePressedX,userInput.mousePressedY, 5, Color.BLACK);
+			  gameObjects.add(s);
+			  spikes.add(s);
+			  Const.drawSpike = false;
+			  
+			  Const.money -= 3;
+		  }
+		  else if(userInput.isMousePressed && Const.drawGlue && Const.money >=10){
+			  GlueTower gt = new GlueTower(userInput.mousePressedX,userInput.mousePressedY, 20, Color.CYAN);
+			  if(intersection(gt)==false){
+				  //only adds tower to gameObjects if it's not intersecting
+				  gameObjects.add(gt);
+				  gluetowers.add(gt);
+				  Const.drawGlue = false;
+				  Const.money -= gt.price;
+			  }
+		  }
 		
 	}
 	final void run(){
 		long lastTick = System.currentTimeMillis();
 		while(true){
-		
+			if((Const.health <= 0) || (lvl == Const.levels.size() && balloons.isEmpty())){
+				Const.gameOver = true;
+			}
+			 if(Const.gameOver) { continue;}
 			long currentTick = System.currentTimeMillis();
 			  this.millisDiff  = currentTick-lastTick;
 			  
@@ -138,7 +176,8 @@ public class World {
 			  graphicSystem.drawLine(500, 490 , 650, 510);
 			  graphicSystem.drawLine(500, 490, 520, 720);
 			  for(int i=0; i<gameSize; i++)
-			  { graphicSystem.draw(gameObjects.get(i));
+			  {  
+				graphicSystem.draw(gameObjects.get(i));
 			  }
 
 			  
@@ -167,6 +206,20 @@ public class World {
 				  double TowerRadius = towers.get(i).Shootradius;
 				  for(int j=0; j<balloons.size(); j++){
 					  if(distance(TowerX, TowerY, balloons.get(j).x, balloons.get(j).y) < TowerRadius){
+						  	if(t.isShooting == false){
+						  		createShots(t, TowerX, TowerY, balloons.get(j).x, balloons.get(j).y);
+						  	}
+					  }
+				  }
+			  }
+			  for(int i =0; i< gluetowers.size(); i++){
+
+				  GlueTower t = gluetowers.get(i);
+				  double TowerX = gluetowers.get(i).x;
+				  double TowerY = gluetowers.get(i).y;
+				  double TowerRadius = gluetowers.get(i).Shootradius;
+				  for(int j=0; j<balloons.size(); j++){
+					  if(distance(TowerX, TowerY, balloons.get(j).x, balloons.get(j).y) < TowerRadius){
 						  	if(t.hasShot == false){
 						  		createShots(t, TowerX, TowerY, balloons.get(j).x, balloons.get(j).y);
 						  		//t.hasShot = true;
@@ -177,6 +230,7 @@ public class World {
 		}
 	}
 	private void createShots(Tower t, double towerX, double towerY, double x, double y) {
+  		t.isShooting = true;
 		final double INTERVAL = Const.SHOT_INTERVAL;
 		int i = 0;
 		while(i<6){
@@ -184,6 +238,23 @@ public class World {
 			timePassed2 += millisDiff/1000.0;
 			if(timePassed2 >= INTERVAL){
 				Shot s = t.shoot(x, y);
+				gameObjects.add(s);
+				timePassed2=0;
+				i++;
+			}
+		}
+  		t.isShooting = false;
+
+
+	}
+	private void createShots(GlueTower t, double towerX, double towerY, double x, double y) {
+		final double INTERVAL = Const.SHOT_INTERVAL;
+		int i = 0;
+		while(i<6){
+			 System.out.println("");
+			timePassed2 += millisDiff/1000.0;
+			if(timePassed2 >= INTERVAL){
+				GlueShot s = t.shoot(x, y);
 				gameObjects.add(s);
 				timePassed2=0;
 				i++;
