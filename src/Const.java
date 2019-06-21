@@ -8,7 +8,7 @@ public class Const {
 	 // size of the world
 	  static final int WORLD_WIDTH      = 960;
 	  static final int WORLD_HEIGHT     = 720;
-	  static int health = 1;
+	  static int health = 100;
 	  static int money = 1000;
 	  // size of the displayed part of the world
 	  static boolean drawTower = false;

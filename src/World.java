@@ -177,7 +177,12 @@ public class World {
 			  graphicSystem.drawLine(500, 490, 520, 720);
 			  for(int i=0; i<gameSize; i++)
 			  {  
-				graphicSystem.draw(gameObjects.get(i));
+				if(gameObjects.get(i).type() == 2 || gameObjects.get(i).type() == 5 || gameObjects.get(i).type() == 4){
+					graphicSystem.drawTower(gameObjects.get(i));
+				}
+				else{
+					graphicSystem.draw(gameObjects.get(i));
+				}
 			  }
 
 			  

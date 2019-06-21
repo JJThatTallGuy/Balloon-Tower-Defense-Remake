@@ -80,7 +80,16 @@ class Panel extends JPanel implements GraphicSystem
 	  int x = (int)(dot.x-dot.radius-world.worldPartX);
 	  int y = (int)(dot.y-dot.radius-world.worldPartY);
 	  int d = (int)(dot.radius*2);
-      File classPathInput = new File(Panel.class.getResource("").getFile());
+	  File classPathInput = null;
+	  if(dot.type() == 2){
+		  classPathInput = new File(Panel.class.getResource("/image.png").getFile());
+	  }
+	  else if(dot.type() ==5){
+		  classPathInput = new File(Panel.class.getResource("/image2.png").getFile());
+	  }
+	  else{
+		  classPathInput = new File(Panel.class.getResource("/spike.png").getFile());
+	  }
       BufferedImage classpathImage = null;
 	try {
 		classpathImage = ImageIO.read(classPathInput);
@@ -88,8 +97,7 @@ class Panel extends JPanel implements GraphicSystem
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-		
-		graphics.drawImage(classpathImage, x, y, d, d, null);
+		graphics.drawImage(classpathImage, x, y, d, d*2, null);
   }
   public final void draw(TextObject text)
   {	  
