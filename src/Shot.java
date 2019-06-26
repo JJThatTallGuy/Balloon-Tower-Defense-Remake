@@ -3,7 +3,7 @@ import java.awt.Color;
 public class Shot extends GameObject{
 
 	public Shot(double x_, double y_, double a_, double s_) {
-		super(x_, y_, a_, s_, 4, Color.GREEN);
+		super(x_, y_, a_, s_, 4, Color.BLACK);
 	
 		// TODO Auto-generated constructor stub
 	}

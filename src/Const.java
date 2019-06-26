@@ -8,8 +8,8 @@ public class Const {
 	 // size of the world
 	  static final int WORLD_WIDTH      = 960;
 	  static final int WORLD_HEIGHT     = 720;
-	  static int health = 100;
-	  static int money = 1000;
+	  static int health = 50;
+	  static int money = 10;
 	  // size of the displayed part of the world
 	  static boolean drawTower = false;
 	  static boolean canStart = false;
@@ -39,6 +39,30 @@ public class Const {
 				  new Balloon(490,0,10,100,5,500),new Balloon(490,0,10,100,5,500), new Balloon(490,0,10,100,5,500),new Balloon(490,0,10,100,5,500)});
 		  put(5,new Balloon[]{new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700), new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700), 
 				  new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700), new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700)});
+		  put(6,new Balloon[]{new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700), new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700), 
+				  new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700), new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700), 
+				  new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700), new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700), 
+				  new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700), new Balloon(490,0,10,100,5,700),new Balloon(490,0,10,100,5,700)});
+		  put(7,new Balloon[]{new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), 
+				  new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), 
+				  new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), 
+				  new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900)});
+		  put(8,new Balloon[]{new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), 
+				  new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), 
+				  new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), 
+				  new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), 
+				  new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), 
+				  new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), 
+				  new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), 
+				 new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900), new Balloon(490,0,10,100,5,900),new Balloon(490,0,10,100,5,900)});
+		  put(9,new Balloon[]{new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), 
+				  new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), new Balloon(490,0,10,100,5, 1100),new Balloon(490,0,10,100,5,1100), 
+				  new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), 
+				  new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), 
+				  new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), 
+				  new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), 
+				  new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), 
+				 new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100), new Balloon(490,0,10,100,5,1100),new Balloon(490,0,10,100,5,1100)});
 
 	  };
 	  };  

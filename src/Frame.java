@@ -30,14 +30,14 @@ public class Frame extends JFrame{
 		this.setContentPane(panel);
 		//Do not remove
 		this.setLayout(null);
-		Button b = new Button("Tower");
-		b.setBounds(1000, 50,50,30);
+		Button b = new Button("Dart Tower: 5");
+		b.setBounds(970, 50, 90,30);
 		Button start = new Button("Start");
-		start.setBounds(1000, 20, 50, 30);
-		Button spike = new Button("Spike");
-		spike.setBounds(1000, 80, 50, 30);
-		Button g = new Button("GlueTower");
-		g.setBounds(980, 110, 70, 30);
+		start.setBounds(970, 20, 90, 30);
+		Button spike = new Button("Spike: 3");
+		spike.setBounds(970, 80, 90, 30);
+		Button g = new Button("Glue Tower: 10");
+		g.setBounds(970, 110, 90, 30);
 		//Also do not remove
 		b.setFocusable(false);
 		start.setFocusable(false);
